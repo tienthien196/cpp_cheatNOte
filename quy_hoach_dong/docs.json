@@ -1,0 +1,67 @@
+{
+  "dynamic_programming_techniques": [
+    {
+      "id": 1,
+      "name": "Đệ quy + Memoization (Top-down)",
+      "description": "Giữ nguyên cấu trúc đệ quy, nhưng lưu kết quả của các bài toán con vào mảng/cache để tránh tính lại. Phù hợp khi bạn đã có hàm đệ quy và muốn tối ưu nhanh.",
+      "pattern_in_code": "if (memo[n] != -1) return memo[n];\nmemo[n] = f(n-1) + f(n-2);\nreturn memo[n];",
+      "example": "Fibonacci với memo, bài toán dãy con tăng dài nhất (LIS) top-down",
+      "uses_recursion": true,
+      "space_complexity": "O(n) cho mảng memo + O(n) stack",
+      "time_complexity": "O(n) hoặc O(n*k) tùy bài",
+      "data_structure": "mảng 1D/2D làm cache"
+    },
+    {
+      "id": 2,
+      "name": "Lặp + Bảng 1D (Bottom-up)",
+      "description": "Xây dựng lời giải từ trường hợp cơ sở (nhỏ nhất) lên trường hợp lớn, dùng mảng 1D lưu kết quả trung gian. Không dùng đệ quy, tránh tràn stack.",
+      "pattern_in_code": "dp[0] = base0; dp[1] = base1;\nfor (i = 2; i <= n; i++) {\n    dp[i] = dp[i-1] + dp[i-2];\n}",
+      "example": "Fibonacci bottom-up, tổng dãy con không kề nhau",
+      "uses_recursion": false,
+      "space_complexity": "O(n)",
+      "time_complexity": "O(n)",
+      "data_structure": "mảng 1 chiều"
+    },
+    {
+      "id": 3,
+      "name": "Tối ưu không gian (Space Optimization)",
+      "description": "Khi công thức truy hồi chỉ phụ thuộc vào k giá trị trước (k nhỏ, thường k=1 hoặc 2), ta chỉ cần giữ k biến thay vì cả mảng.",
+      "pattern_in_code": "a = base0; b = base1;\nfor (i = 2; i <= n; i++) {\n    c = a + b;\n    a = b; b = c;\n}",
+      "example": "Fibonacci O(1) bộ nhớ, bài toán leo cầu thang",
+      "uses_recursion": false,
+      "space_complexity": "O(1)",
+      "time_complexity": "O(n)",
+      "data_structure": "biến đơn"
+    },
+    {
+      "id": 4,
+      "name": "Bảng 2D (Bottom-up cho bài toán 2 chiều)",
+      "description": "Khi bài toán có hai tham số (ví dụ: độ dài chuỗi, chỉ số bắt đầu/kết thúc), dùng mảng 2D để lưu kết quả các trạng thái (i, j).",
+      "pattern_in_code": "for (i = 0; i <= n; i++)\n  for (j = 0; j <= k; j++)\n    if (base) dp[i][j] = 1;\n    else dp[i][j] = dp[i-1][j-1] + dp[i-1][j];",
+      "example": "Tổ hợp C(n,k), dãy con chung dài nhất (LCS), xâu đối xứng dài nhất",
+      "uses_recursion": false,
+      "space_complexity": "O(n*k)",
+      "time_complexity": "O(n*k)",
+      "data_structure": "mảng 2 chiều"
+    },
+    {
+      "id": 5,
+      "name": "Truy vết (Path Reconstruction)",
+      "description": "Sau khi tính giá trị tối ưu, sử dụng mảng phụ (parent, choice, direction...) để lưu lại 'quyết định' tại mỗi bước, rồi truy ngược để in ra lời giải cụ thể.",
+      "pattern_in_code": "// Trong DP: parent[i] = j;\n// In kết quả:\nvoid trace(int i) {\n    if (i == -1) return;\n    trace(parent[i]);\n    printf(\"%d \", value[i]);\n}",
+      "example": "In dãy con tăng dài nhất, in dãy con chung dài nhất",
+      "uses_recursion": "thường dùng đệ quy để in",
+      "space_complexity": "+O(n) cho mảng truy vết",
+      "time_complexity": "+O(n) để truy vết",
+      "data_structure": "mảng parent/choice + mảng DP"
+    }
+  ],
+  "metadata": {
+    "total_techniques": 5,
+    "category": "Dynamic Programming",
+    "core_principle": "Lưu kết quả bài toán con để tránh tính lại — giải quyết vấn đề 'trùng lặp' trong đệ quy",
+    "prerequisites": "Hiểu đệ quy, mảng 1D/2D cơ bản",
+    "scope": "Quy hoạch động thuần, dùng C thuần, mảng đơn giản",
+    "note": "DP chỉ áp dụng được khi bài toán có (1) cấu trúc con tối ưu và (2) các bài toán con trùng lặp."
+  }
+}

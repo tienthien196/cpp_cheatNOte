@@ -1,0 +1,60 @@
+{
+  "greedy_techniques": [
+    {
+      "id": 1,
+      "name": "Sắp xếp + Chọn theo thứ tự",
+      "description": "Sắp xếp dữ liệu theo tiêu chí tham lam (ví dụ: thời gian kết thúc, tỷ lệ lợi nhuận), sau đó duyệt tuần tự và chọn nếu thỏa điều kiện.",
+      "pattern_in_loop": "sort(data);\nfor (i = 0; i < n; i++) {\n    if (condition(data[i])) {\n        select(data[i]);\n        update_state();\n    }\n}",
+      "example": "Chọn nhiều hoạt động nhất (Activity Selection), Lập lịch họp",
+      "requires_sorting": true,
+      "uses_loop": true,
+      "backtracking": false,
+      "data_structure": "mảng 1 chiều",
+      "time_complexity": "O(n log n) do sắp xếp"
+    },
+    {
+      "id": 2,
+      "name": "Chọn cực trị tại mỗi bước",
+      "description": "Tại mỗi bước, chọn phần tử lớn nhất/nhỏ nhất có thể (thường đã được sắp xếp giảm/dăng), và cập nhật trạng thái ngay lập tức.",
+      "pattern_in_loop": "for (i = 0; i < num_options; i++) {\n    while (resource >= option[i]) {\n        resource -= option[i];\n        count++;\n    }\n}",
+      "example": "Đổi tiền với ít tờ nhất (hệ tiền chuẩn: 1, 5, 10, 25)",
+      "requires_sorting": "thường đã sắp xếp sẵn",
+      "uses_loop": true,
+      "backtracking": false,
+      "data_structure": "mảng 1 chiều (danh sách lựa chọn)",
+      "time_complexity": "O(n) hoặc O(amount) tùy bài"
+    },
+    {
+      "id": 3,
+      "name": "Duy trì ứng viên tốt nhất",
+      "description": "Duyệt qua dữ liệu, liên tục cập nhật 'ứng viên tốt nhất' hiện tại (max, min, best ratio...), không chọn ngay mà chốt ở cuối.",
+      "pattern_in_loop": "best = data[0];\nfor (i = 1; i < n; i++) {\n    if (data[i] better than best) {\n        best = data[i];\n    }\n}",
+      "example": "Tìm phần tử lớn nhất/nhỏ nhất, Tìm ngày mua bán cổ phiếu lời nhất (1 lần giao dịch)",
+      "requires_sorting": false,
+      "uses_loop": true,
+      "backtracking": false,
+      "data_structure": "mảng 1 chiều hoặc luồng số",
+      "time_complexity": "O(n)"
+    },
+    {
+      "id": 4,
+      "name": "Tham lam ngược (Greedy from the end)",
+      "description": "Bắt đầu từ cuối dãy hoặc trạng thái cuối cùng, và áp dụng chiến lược tham lam ngược để xây dựng lời giải.",
+      "pattern_in_loop": "for (i = n-1; i >= 0; i--) {\n    if (condition_from_end(data[i])) {\n        select_or_update();\n    }\n}",
+      "example": "Jump Game II (tính số bước nhảy tối thiểu), Xây dựng dãy không có 3 ký tự giống nhau liên tiếp",
+      "requires_sorting": false,
+      "uses_loop": true,
+      "backtracking": false,
+      "data_structure": "mảng 1 chiều",
+      "time_complexity": "O(n)"
+    }
+  ],
+  "metadata": {
+    "total_techniques": 4,
+    "category": "Greedy Algorithm",
+    "core_principle": "Luôn chọn lựa chọn tốt nhất tại thời điểm hiện tại, không quay lui",
+    "prerequisites": "Hiểu vòng lặp, mảng cơ bản",
+    "scope": "Giải thuật tham lam thuần, dùng C thuần, ưu tiên mảng 1D đơn giản",
+    "note": "Tham lam chỉ đúng với các bài toán có tính chất lựa chọn tham lam và cấu trúc con tối ưu. Không phải bài nào cũng áp dụng được!"
+  }
+}

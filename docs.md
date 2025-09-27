@@ -46,3 +46,24 @@ C++ CHO LUYỆN THUẬT TOÁN
     ├── Smart pointers, multithreading
     └── Viết template phức tạp
 ```
+
+
+---
+```
+GIẢI THUẬT
+├── 1. ĐỆ QUY
+│   ├── Vét cạn
+│   ├── Quay lui
+│   └── (là nền cho Chia để trị & DP)
+├── 2. CHIA ĐỂ TRỊ
+│   ├── Merge Sort
+│   ├── Binary Search
+│   └── Tìm kiếm trên đáp án
+├── 3. THAM LAM
+│   ├── Sắp xếp + chọn
+│   └── Hai con trỏ (kỹ thuật cài đặt)
+└── 4. QUY HOẠCH ĐỘNG
+    ├── Memoization (dựa trên đệ quy)
+    └── Tabulation (dựa trên lặp)
+        └── Bitmask DP (dùng xử lý bit)
+```

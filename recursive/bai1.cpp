@@ -91,6 +91,6 @@ void tachso(int n, int x){
 
 int main() {            
 
-    tachso(90, 2);
+    tachso(12345, 2);
     return 0;
 }
