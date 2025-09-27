@@ -76,8 +76,21 @@ int gcd(int a, int b){
     );
 }
 
+
+// p tach so 
+void tachso(int n, int x){
+    if (n==0 || n<x) return;
+    if(n%x == 0)
+    {
+        cout << x << " ";
+        tachso(n/x, x);
+    }
+    else return tachso(n, x+1);   
+}
+
+
 int main() {            
 
-    timmer(1);
+    tachso(90, 2);
     return 0;
 }

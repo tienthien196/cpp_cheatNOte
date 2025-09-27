@@ -1,0 +1,55 @@
+{
+  "divide_and_conquer_techniques": [
+    {
+      "id": 1,
+      "name": "Chia đôi – Gọi hai nửa – Gộp sau",
+      "description": "Chia dữ liệu thành hai phần bằng nhau (thường là mảng), giải độc lập hai bài toán con bằng đệ quy, sau đó gộp kết quả (ví dụ: lấy max, trộn, cộng...).",
+      "pattern_in_body": "int mid = (l + r) / 2;\nint left = solve(l, mid);\nint right = solve(mid + 1, r);\nreturn combine(left, right);",
+      "example": "Tìm giá trị lớn nhất trong mảng, Merge Sort",
+      "num_recursive_calls": 2,
+      "combine_required": true,
+      "data_structure": "mảng 1 chiều",
+      "time_complexity": "O(n log n) hoặc O(log n) tùy bài"
+    },
+    {
+      "id": 2,
+      "name": "Chia theo tính chất toán học",
+      "description": "Chia bài toán dựa trên đặc điểm toán học (chẵn/lẻ, dấu, chia hết...) thay vì chia không gian dữ liệu. Thường chỉ cần 1–2 lời gọi con.",
+      "pattern_in_body": "if (n % 2 == 0) {\n    int half = solve(n / 2);\n    return half * half;\n} else {\n    return x * solve(n - 1);\n}",
+      "example": "Lũy thừa nhanh (exponentiation by squaring), Binary GCD",
+      "num_recursive_calls": "1 hoặc 2",
+      "combine_required": true,
+      "data_structure": "số nguyên (không cần mảng)",
+      "time_complexity": "O(log n)"
+    },
+    {
+      "id": 3,
+      "name": "Chia – Chọn một – Không gộp",
+      "description": "Sau khi chia, chỉ tiếp tục đệ quy trên **một nửa** dựa trên điều kiện (so sánh, xu hướng...). Không cần gộp vì kết quả nằm nguyên trong một nửa.",
+      "pattern_in_body": "int mid = (l + r) / 2;\nif (condition_left) return solve(l, mid - 1);\nelse return solve(mid + 1, r);",
+      "example": "Tìm kiếm nhị phân (Binary Search), Tìm peak element",
+      "num_recursive_calls": 1,
+      "combine_required": false,
+      "data_structure": "mảng 1 chiều",
+      "time_complexity": "O(log n)"
+    },
+    {
+      "id": 4,
+      "name": "Chia – Trị – Gộp với biến tích lũy",
+      "description": "Sử dụng tham số phụ (con trỏ hoặc biến toàn cục) để tích lũy thông tin trong quá trình chia hoặc gộp (ví dụ: đếm số phép toán, lưu kết quả trung gian).",
+      "pattern_in_body": "int left = solve(arr, l, mid, &count);\nint right = solve(arr, mid+1, r, &count);\n(*count)++;\nreturn combine(left, right);",
+      "example": "Đếm số phép so sánh khi tìm max, đo độ sâu đệ quy",
+      "num_recursive_calls": 2,
+      "combine_required": true,
+      "data_structure": "mảng 1 chiều + tham số phụ",
+      "time_complexity": "Tùy bài toán chính"
+    }
+  ],
+  "metadata": {
+    "total_techniques": 4,
+    "category": "Divide and Conquer",
+    "prerequisites": "Hiểu đệ quy cơ bản, con trỏ (nếu dùng biến tích lũy)",
+    "scope": "Giải thuật chia để trị thuần, ưu tiên không dùng cấu trúc dữ liệu phức tạp",
+    "note": "Các kỹ thuật này là nền tảng cho Merge Sort, Quick Sort, Binary Search, Fast Exponentiation..."
+  }
+}

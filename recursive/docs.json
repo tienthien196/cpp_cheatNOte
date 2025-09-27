@@ -1,0 +1,89 @@
+{
+  "recursive_techniques": [
+    {
+      "id": 1,
+      "name": "Tính khi quay lui",
+      "description": "Phép toán (như +, *, ...) được thực hiện SAU khi nhận kết quả từ lời gọi đệ quy. Kết quả được tổng hợp từ dưới lên.",
+      "pattern_in_body": "return n * f(n - 1);",
+      "example": "Giai thừa, tổng dãy số",
+      "execution_phase": "quay_lui"
+    },
+    {
+      "id": 2,
+      "name": "Đệ quy đuôi (Tail Recursion)",
+      "description": "Lời gọi đệ quy là lệnh cuối cùng trong hàm; mọi tính toán được thực hiện TRƯỚC khi gọi. Có thể tối ưu thành vòng lặp.",
+      "pattern_in_body": "return f(n - 1, accumulator * n);",
+      "example": "Giai thừa đuôi, GCD (ước chung lớn nhất)",
+      "execution_phase": "di_xuong"
+    },
+    {
+      "id": 3,
+      "name": "Phân nhánh (Binary/Multiple Recursion)",
+      "description": "Một lời gọi sinh ra 2 hoặc nhiều lời gọi đệ quy con, tạo thành cây gọi hàm.",
+      "pattern_in_body": "return f(n - 1) + f(n - 2);",
+      "example": "Dãy Fibonacci, tổ hợp",
+      "execution_phase": "cay_phan_nhanh"
+    },
+    {
+      "id": 4,
+      "name": "Làm việc khi đi xuống",
+      "description": "Hành động (in, đếm, v.v.) được thực hiện TRƯỚC khi gọi đệ quy. Xử lý theo chiều giảm.",
+      "pattern_in_body": "printf(\"%d \", n); f(n - 1);",
+      "example": "In số từ n xuống 1",
+      "execution_phase": "di_xuong"
+    },
+    {
+      "id": 5,
+      "name": "Làm việc khi quay lên",
+      "description": "Hành động được thực hiện SAU khi gọi đệ quy. Xử lý theo chiều tăng nhờ cơ chế stack.",
+      "pattern_in_body": "f(n - 1); printf(\"%d \", n);",
+      "example": "In số từ 1 đến n (gọi từ n)",
+      "execution_phase": "quay_lui"
+    },
+    {
+      "id": 6,
+      "name": "Đệ quy có điều kiện chọn hướng",
+      "description": "Chỉ gọi đệ quy theo một nhánh dựa trên điều kiện; có thể dừng sớm nếu không hợp lệ.",
+      "pattern_in_body": "if (n % 2 == 0) return f(n/2); else return f(3*n + 1);",
+      "example": "Kiểm tra lũy thừa của 2, bài toán Collatz",
+      "execution_phase": "co_dieu_kien"
+    },
+    {
+      "id": 7,
+      "name": "Đệ quy tăng dần (Forward Recursion)",
+      "description": "Tham số tăng dần (thay vì giảm) để tiến tới giới hạn. Thường dùng tham số phụ.",
+      "pattern_in_body": "f(current + 1, target);",
+      "example": "In từ 1 đến n bằng đệ quy",
+      "execution_phase": "di_len"
+    },
+    {
+      "id": 8,
+      "name": "Đa điều kiện dừng",
+      "description": "Hàm có nhiều trường hợp cơ sở (base cases) tùy thuộc vào tính chất đầu vào.",
+      "pattern_in_body": "if (n <= 1) return ...; if (n % 2 == 0) ...",
+      "example": "Kiểm tra số nguyên tố, Collatz steps",
+      "execution_phase": "da_dieu_kien_dung"
+    },
+    {
+      "id": 9,
+      "name": "Đệ quy lồng (Nested Recursion)",
+      "description": "Tham số của lời gọi đệ quy là KẾT QUẢ của một lời gọi đệ quy khác.",
+      "pattern_in_body": "return f(f(n - 1));",
+      "example": "Hàm Hofstadter (Female/Male sequence)",
+      "execution_phase": "long_lap"
+    },
+    {
+      "id": 10,
+      "name": "Đệ quy gọi chéo (Mutual Recursion)",
+      "description": "Hai (hoặc nhiều) hàm gọi lẫn nhau tạo thành chuỗi đệ quy.",
+      "pattern_in_body": "int A(int n) { return B(n-1); } int B(int n) { return A(n-1); }",
+      "example": "Dãy Female và Male của Hofstadter",
+      "execution_phase": "goi_cheo"
+    }
+  ],
+  "metadata": {
+    "total_techniques": 10,
+    "scope": "pure recursion with integers only (no arrays, trees, or complex data structures)",
+    "purpose": "educational - to master recursive thinking and execution flow"
+  }
+}   
