@@ -16,6 +16,15 @@
 #include <cctype>       // isdigit, tolower, ...
 using namespace std;
 
+
+const int INF = 1e9;           // hoặc INT_MAX
+const long long INF_LL = 1e18; // hoặc LLONG_MAX
+const double EPS = 1e-9;
+
+#define ll long long
+#define pb push_back
+#define all(v) v.begin(), v.end()
+
 int main() {
     // code here
     return 0;
